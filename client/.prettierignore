@@ -1,9 +1,0 @@
-.next
-.cache
-pnpm-lock.yaml
-tailwind.config.js
-public
-node_modules
-next-env.d.ts
-next.config.ts
-yarn.lock
