@@ -1,0 +1,57 @@
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+enum UserStatus {
+  ONLINE
+  OFFLINE
+}
+
+enum FriendshipStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  CANCELLED
+}
+
+
+model User {
+  userId          String     @id @default(cuid())
+  name            String
+  email           String    @unique
+  password        String
+  status          UserStatus    @default(OFFLINE) 
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  sentFriendships Friendship[] @relation("sent_friendships")
+  receivedFriendships Friendship[] @relation("received_friendships")
+  sentMessages    Message[] @relation("sent_messages")
+  receivedMessages Message[] @relation("received_messages")
+}
+
+model Friendship {
+  friendshipId    String    @id @default(cuid())
+  senderId        String
+  receiverId      String
+  status          FriendshipStatus    @default(PENDING) 
+  sender          User      @relation("sent_friendships", fields: [senderId], references: [userId])
+  receiver        User      @relation("received_friendships", fields: [receiverId], references: [userId])
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+model Message {
+  messageId       String    @id @default(cuid())
+  content         String
+  senderId        String
+  receiverId      String
+  createdAt       DateTime  @default(now())
+  sender          User      @relation("sent_messages", fields: [senderId], references: [userId])
+  receiver        User      @relation("received_messages", fields: [receiverId], references: [userId])
+}
