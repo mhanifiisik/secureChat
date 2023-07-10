@@ -1,5 +1,5 @@
 import cors from 'cors';
-import express from 'express';
+import express, { type Request, type Response } from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import swaggerUi from 'swagger-ui-express';
@@ -9,7 +9,7 @@ import { authRoutes } from './routes/auth';
 import swaggerSpecs from './swagger';
 import { socketHandlers } from './websocket';
 
-const { PORT } = process.env;
+const PORT = process.env.PORT || 8000;
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -23,7 +23,9 @@ const io = new Server(server, {
 });
 
 socketHandlers(io, prisma);
-
+app.get('/', (req: Request, res: Response) => {
+  res.send('API is running');
+});
 app.use('/api/auth', authRoutes);
 app.use('/swagger/api', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
