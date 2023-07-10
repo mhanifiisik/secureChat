@@ -32,5 +32,5 @@
       "version": "detect"
     }
   },
-  "ignorePatterns": ["server/node_modules/", "client/node_modules/", "server/dist", "client/.next"]
+  "ignorePatterns": ["**/node_modules/**", "**/dist", "**/.next"]
 }
