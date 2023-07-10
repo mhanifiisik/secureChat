@@ -60,6 +60,9 @@ devDependencies:
   '@types/bcryptjs':
     specifier: ^2.4.2
     version: 2.4.2
+  '@types/cors':
+    specifier: ^2.8.13
+    version: 2.8.13
   '@types/jsonwebtoken':
     specifier: ^9.0.2
     version: 9.0.2
@@ -344,7 +347,6 @@ packages:
     resolution: {integrity: sha512-RG8AStHlUiV5ysZQKq97copd2UmVYw3/pRMLefISZ3S1hK104Cwm7iLQ3fTKx+lsUH2CE8FlLaYeEA2LSeqYUA==}
     dependencies:
       '@types/node': 20.3.1
-    dev: false
 
   /@types/crypto-js@4.1.1:
     resolution: {integrity: sha512-BG7fQKZ689HIoc5h+6D2Dgq1fABRa0RbBWKBd9SP/MVRVXROflpm5fhwyATX5duFmbStzyzyycPB8qUYKDH3NA==}
