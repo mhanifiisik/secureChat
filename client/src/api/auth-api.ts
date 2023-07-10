@@ -1,8 +1,8 @@
 import type { AxiosError } from 'axios';
 
+import UserAuthenticationDetails from '../components/auth/models/sign-in.model';
+import UserRegistrationDetails from '../components/auth/models/sign-up.model';
 import apiClient from './api';
-import type UserAuthenticationDetails from './models/sign-in.model';
-import type UserRegistrationDetails from './models/sign-up.model';
 
 export const authApi = {
   registerUser: async (registrationDetails: UserRegistrationDetails) => {
