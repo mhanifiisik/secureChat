@@ -1,8 +1,9 @@
-import express from 'express'
-import { body } from 'express-validator'
-import { signUp, signIn } from '../controllers/auth'
+import express from 'express';
+import { body } from 'express-validator';
 
-export const authRoutes = express.Router()
+import { signIn, signUp } from '../controllers/auth';
+
+export const authRoutes = express.Router();
 
 /**
  * @swagger
@@ -33,10 +34,10 @@ authRoutes.post(
   [
     body('email').isEmail().withMessage('Invalid email'),
     body('email').notEmpty().withMessage('Email is required'),
-    body('password').notEmpty().withMessage('Password is required')
+    body('password').notEmpty().withMessage('Password is required'),
   ],
-  signUp
-)
+  signUp,
+);
 
 /**
  * @swagger
@@ -65,9 +66,9 @@ authRoutes.post(
   [
     body('email').notEmpty().withMessage('Email is required'),
     body('email').isEmail().withMessage('Invalid email'),
-    body('password').notEmpty().withMessage('Password is required')
+    body('password').notEmpty().withMessage('Password is required'),
   ],
-  signIn
-)
+  signIn,
+);
 
-export default authRoutes
+export default authRoutes;
